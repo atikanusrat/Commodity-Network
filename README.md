@@ -47,10 +47,15 @@
 Install requirements:
 
 bash
+
 pip install streamlit networkx pandas plotly requests
+
 Usage
+
 bash
+
 streamlit run network_final.py
+
 Then interact with:
 
 Year selector in sidebar
@@ -60,11 +65,13 @@ State dropdown for detailed views
 Hover tooltips on nodes/edges
 
 **Data Sources**
+
 Primary: U.S. Census Bureau Commodity Flow Survey
 
 Years Available: 2012, 2017
 
 **Customization Options**
+
 In network_final.py you can adjust:
 
 _connect_similar_states(): Change similarity threshold (currently 0.7)
