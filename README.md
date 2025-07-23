@@ -1,56 +1,74 @@
 
 # U.S. State Commodity Network Analysis
-<img width="1408" height="712" alt="Screenshot 2025-07-23 at 3 48 40 PM" src="https://github.com/user-attachments/assets/061a40c2-95d6-4bbe-95b4-8b5255d7e0ca" />
+<img width="1426" height="715" alt="Screenshot 2025-07-23 at 6 50 49 PM" src="https://github.com/user-attachments/assets/e89874e3-c3eb-4bf4-974a-4ae6536b80e8" />
 
-*Interactive visualization of state trade similarities*
+*An interactive Streamlit application that visualizes economic relationships between U.S. states based on commodity trade patterns, using Census Bureau data.*
 
-## Overview
-This Streamlit app analyzes and visualizes interstate commodity flow patterns using U.S. Census data. It identifies states with similar trade profiles and calculates their network centrality.
+## Key Features
 
-## Features
-- Interactive network visualization (node size = trade volume, color = centrality)
-- State-specific trade metrics (total value, top commodities)
-- Similarity-based connections between states
+- **Network Visualization**:
+  - Nodes represent states (size = economic importance)
+  - Edges show trade similarity (thickness = connection strength)
+  - Color indicates network centrality (influence)
 
-## Project Structure
-.
-├── README.md # Project documentation (you are here)
-├── config.py # Configuration (API key)
-├── network_final.py # Main application code
+- **Interactive Elements**:
+  - Hover over states for detailed metrics
+  - Select specific states to view their top commodities
+  - Compare different years (2012 vs 2017)
 
-text
+- **Analytics**:
+  - Hybrid similarity scoring (top commodities + overall profile)
+  - Economic importance calculations
+  - Network centrality metrics
 
-## Requirements
-**None** (No special hardware/OS requirements)
+## How It Works
 
-## Required Packages
-streamlit==1.32.0
-networkx==3.2.1
-pandas==2.1.0
-plotly==5.18.0
-requests==2.31.0
-numpy==1.26.0
+1. **Data Pipeline**:
+   - Fetches commodity flow data from Census API
+   - Cleans and processes trade values
+   - Creates state trade profiles
 
-text
+2. **Network Analysis**:
+   - Calculates similarity between state trade portfolios
+   - Identifies strongest economic relationships
+   - Computes each state's network influence
 
-## Setup & Usage
-1. **Add your Census API key**:
-   - Edit `config.py` and replace `YOUR_API_KEY_HERE` with your key from [Census API Signup](https://api.census.gov/data/key_signup.html).
+3. **Visualization**:
+   - Spring-layout force-directed graph
+   - Dynamic node sizing and coloring
+   - Interactive tooltips and selection
 
-2. **Install packages**:
-   ```bash
-   pip install -r requirements.txt
-Run the app:
+## Installation
+
+1. Get a [Census API key](https://api.census.gov/data/key_signup.html)
+2. Create `config.py` with your key:
+   ```python
+   CENSUS_API_KEY = "your_api_key_here"
+Install requirements:
 
 bash
+pip install streamlit networkx pandas plotly requests
+Usage
+bash
 streamlit run network_final.py
-Interact with the app:
+Then interact with:
 
-Select a year (2017 or 2012) in the sidebar
+Year selector in sidebar
 
-Hover over nodes to see state details
+State dropdown for detailed views
 
-Click the "Select State" dropdown to view specific trade data
+Hover tooltips on nodes/edges
 
-# Data Source
-U.S. Census Bureau Commodity Flow Survey (CFS) via public API.
+**Data Sources**
+Primary: U.S. Census Bureau Commodity Flow Survey
+
+Years Available: 2012, 2017
+
+**Customization Options**
+In network_final.py you can adjust:
+
+_connect_similar_states(): Change similarity threshold (currently 0.7)
+
+visualize_network(): Modify visual styling
+
+_calculate_similarity(): Adjust weighting between top and general commodities
